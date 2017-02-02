@@ -1,0 +1,37 @@
+<style>.sidebar-nav li a{
+        background: green;
+    }
+    .upload-button-new-add {
+        padding: 16px;
+        border: 3px solid black;
+        border-radius: 5px;
+        display: block;
+        font-size: 22px;
+    }</style> <ion-view view-title="GroupList"> <ion-content> <div class="container padding-left-right"> <div class="header_bg"> <div class="headericon-bg"> <div class="logo-white"> <a href="#"><img class="img-responsive" src="images/logo3.png" alt=""></a> </div> <div class="lingua-search"> <a id="searchshow11"><img class="img-responsive" src="images/search.png" alt=""></a> </div> <div class="smsiconbg"> <a ui-sref="linedrop"><img class="img-responsive" src="images/star.png" alt=""></a> </div> </div> <div class="user-acc" ui-sref="accounts"> <img class="dotimg" src="{{linguaCtrl.userDetails.image||'images/profile-user.jpg'}}" alt=""> </div> <!--                <div id="menu11" class="nav sidebar">
+                    <div class="list-group">
+                        <ul class="sidebar-nav">
+                            <li class="sidebar-brand"><span class="cross"><i class="fa fa-angle-right fa-2x"></i></span>
+                                <label><a>{{linguaCtrl.user.name}}</a></label> </li>
+                            <li><a ui-sref="accounts"><i class="fa fa-wrench"></i>Accounts</a> </li>
+                            <li> <a ui-sref="group"><i class="fa fa-group"></i>Group</a> </li>
+                            <li> <a ui-sref="contactList"><i class="fa fa-phone"></i>Contacts</a> </li>
+                            <li> <a ui-sref="linedrop"><i class="fa fa-globe"></i>World</a> </li>
+                            <li> <a ui-sref="chatList"><i class="fa fa-commenting-o"></i>Chat</a> </li>
+                            <li> <a ng-click="linguaCtrl.logout()"><i class="fa fa-sign-out"></i>Log out</a> </li>
+                        </ul>
+                    </div>
+                </div>--> </div> <div class="clearfix"></div> <div class="search-panel-section7"> <input type="search" class="search"> </div> <div class="lingua-menu"> <ul> <li><a ui-sref="chatList">Chat</a></li> <li><a ui-sref="group">Group</a></li> <li class="active"><a ui-sref="linedrop"><b>World</b></a></li> <li><a ui-sref="contactList">Contacts</a></li> </ul> </div> <div class="groupcontent text-center" style="margin-left: 5px;margin-right: 5px;margin-top:68px"> <form ng-submit="linguaCtrl.createLineDrop()"> <div class="lineleftdiv"> <img src="images/line-bg2.jpg" alt="" class="img-responsive profile-pic"> <div class="upload-button-new-add">Upload Image</div> <input class="file-upload-new-add" style="display: none" type="file" accept="image/*"> <input type="hidden" ng-model="linguaCtrl.linedropImage"> </div> <div class="form-group" style="margin-top: 5px"> <textarea class="form-control" rows="5" id="comment" ng-model="linguaCtrl.linedrop.description"></textarea> </div> <button type="submit" class="button button-block button-balanced">Upload</button> </form> </div> </div> </ion-content> </ion-view> <script type="text/javascript">$(document).ready(function () {
+        $('#searchshow11').click(function () {
+            console.log('+++++++');
+            $('.search-panel-section7').slideToggle("fast");
+        });
+        $("#menu11").css("right", "-260px");
+        $('.user-acc .dotimg').click(function () {
+            $("#menu11").css("right", "0");
+            $("#menu11").addClass("visible");
+        });
+        $('#menu11 .cross').click(function () {
+            //	jQuery("#menu").css("right", "-245px");
+            $("#menu11").removeClass("visible");
+        });
+    });</script>

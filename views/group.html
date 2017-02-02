@@ -1,0 +1,45 @@
+<style>.sidebar-nav li a{
+        background: green;
+    }</style> <ion-view view-title="GroupList"> <ion-content> <!--<a href="#toBottom" class="toBottom"><img src="images/bottom.png" alt="" ></a><a name="toTop"></a>--> <div class="container padding-left-right" id="moveDown"> <div class="header_bg"> <div class="headericon-bg"> <div class="logo-white"> <a href="#"><img class="img-responsive" src="images/logo3.png" alt=""></a> </div> <div class="lingua-search"> <a id="searchshow2"><img class="img-responsive" src="images/search.png" alt=""></a> </div> <div class="smsiconbg"> <a ui-sref="createGroup"><img class="img-responsive" src="images/sms.png" alt=""></a> </div> </div> <div class="user-acc" ui-sref="accounts"> <img class="dotimg" src="{{linguaCtrl.userDetails.image||'images/profile-user.jpg'}}" alt=""> </div> </div> <div class="clearfix"></div> <div class="search-panel-section2"> <input type="search" class="search" id="searchText2"> <input type="hidden" id="username" value="{{linguaCtrl.user.name}}"> <div class="search-panel-list"> </div> </div> <div class="lingua-menu"> <ul> <li><a ui-sref="chatList">Chat</a></li> <li class="active"><a ui-sref="group"><b>Group</b></a></li> <li><a ui-sref="linedrop">World</a></li> <li><a ui-sref="contactList">Contacts</a></li> </ul> </div> <div class="rgay-bg"> <div class="whtbg"> <ul> <li class="groupbox" ng-repeat="group in linguaCtrl.grouplist"> <div class="groupcontent text-center" ui-sref="groupchat({id: group.id})"> <div class="leftdiv" ng-hide="group.image == ''"> <img src="{{group.image}}" alt="" class="img-responsive"> </div> <div class="leftdiv" ng-show="group.image == ''"> <img src="images/groupnew.png" alt="" class="img-responsive"> </div> <div class="text-content"> <label>{{group.groupName}}</label> <div class="textinner-cntent"> <i class="fa fa-users" aria-hidden="true"></i> {{group.countUsers}} </div> </div> <div class="absolut-dot"> <img src="images/dot-gray.png" alt=""> </div> </div> </li> </ul> </div> </div> <!--<a  class="toTop" ng-click="linguaCtrl.toTop()"><img src="images/top.png" alt="" ></a><a name="toBottom"></a>--> </div> </ion-content> </ion-view> <script type="text/javascript">$(document).ready(function () {
+        $('#scrollToBottom').bind("click", function () {
+            $('html, body').animate({scrollTop: $(document).height()}, 1200);
+            return false;
+        });
+        $('.toTop').bind("click", function () {
+            console.log('kkkkkk');
+            $('.view-container').animate({scrollTop: 0}, 1200);
+            return false;
+        });
+        $('#searchText2').keyup(function () {
+            if ($(this).val() !== "") {
+                console.log($(this).val() + "====" + $("#username").val());
+                $.ajax({url: "http://greenreeflive.com/lingua_chat/web_service/search.php?key=jhachb688925c58912e72f34775a6d598f1bfdck&type=group&keyword=" + $(this).val() + "&username=" + $("#username").val(),
+                    success: function (result) {
+                        if (result.data.length != 0) {
+                            var strVar = "";
+                            strVar += "<ul>";
+                            for (var i = 0; i < result.data.length; i++) {
+                                strVar += "<li><a href=\"#/groupChat/" + result.data[i].groupID + "\">" + result.data[i].groupID + "</a><\/li>";
+                            }
+                            strVar += "  <\/ul>";
+                            $(".search-panel-list").html(strVar);
+                        }
+                    }});
+            } else {
+                $(".search-panel-list").html("");
+            }
+        });
+        $('#searchshow2').click(function () {
+            console.log('+++++++');
+            $('.search-panel-section2').slideToggle("fast");
+        });
+        $("#menu3").css("right", "-260px");
+        $('.user-acc .dotimg').click(function () {
+            $("#menu3").css("right", "0");
+            $("#menu3").addClass("visible");
+        });
+        $('#menu3 .cross').click(function () {
+            //	jQuery("#menu").css("right", "-245px");
+            $("#menu3").removeClass("visible");
+        });
+    });</script>

@@ -1,0 +1,32 @@
+<style></style> <ion-view view-title="ContactList"> <ion-content> <div class="container padding-left-right"> <div class="header_bg2"> <div class="headericon-bg"> <div class="logo-white"> <a href="#"><img class="img-responsive" src="images/logo3.png" alt=""></a> </div> <div class="lingua-search"> <a id="searchshow"><img class="img-responsive" src="images/search.png" alt=""></a> <!--<input type="search" class="search">--> </div> <div class="smsiconbg"> <a><img class="img-responsive" src="images/sms.png" alt=""></a> </div> </div> <div class="user-acc"> <div class="dotimg"></div> </div> </div> <div class="clearfix"></div> <div class="search-panel-section"> <input type="search" class="search" id="searchText"> <input type="hidden" id="username" value="{{linguaCtrl.user.name}}"> <div class="search-panel-list"> </div> </div> <div class="lingua-menu"> <ul> <li><a ui-sref="chatList">Chat</a></li> <li><a ui-sref="group">Group</a></li> <li><a ui-sref="linedrop">World</a></li> <li class="active"><a ui-sref="contactList"><b>Contacts</b></a></li> </ul> </div> <div class="rgay-bg"> <div class="profle-adam chatmrgn" ng-repeat="contactList in linguaCtrl.contactList"> <div class="leftdiv"> <img src="{{contactList.image||'images/profile-user.jpg'}}" alt="" class="img-responsive"> </div> <div class="rightdiv chatrightbg" ui-sref="singleChat({name: contactList.contactID})"> <div class="follow-detl"> <h1 class="pro-title">{{contactList.contactID}}</h1> <p class="subpara">{{contactList.aboutMe}}</p> </div> <div class="chat-right-bg"> <label>Mobile</label> </div> </div> </div> </div> </div> </ion-content> </ion-view> <script type="text/javascript">$(document).ready(function () {
+        $('#searchText').keyup(function () {
+            if ($(this).val() !== "") {
+                console.log($(this).val() + "====" + $("#username").val());
+                $.ajax({url: "http://greenreeflive.com/lingua_chat/web_service/search.php?key=jhachb688925c58912e72f34775a6d598f1bfdck&type=contact&keyword=" + $(this).val() + "&username=" + $("#username").val(),
+                    success: function (result) {
+                        var strVar = "";
+                        strVar += "<ul>";
+                        for (var i = 0; i < result.data.length; i++) {
+                            strVar += "<li><a href=\"#/singleChat/"+result.data[i].username+"/0\">" + result.data[i].username + "</a><\/li>";
+                        }
+                        strVar += "  <\/ul>";
+                        $(".search-panel-list").html(strVar);
+                    }});
+            }else{
+                $(".search-panel-list").html("");
+            }
+        });
+        $('#searchshow').click(function () {
+            console.log('+++++++');
+            $('.search-panel-section').slideToggle("fast");
+        });
+        $("#menu5").css("right", "-260px");
+        $('.user-acc .dotimg').click(function () {
+            $("#menu5").css("right", "0");
+            $("#menu5").addClass("visible");
+        });
+        $('#menu5 .cross').click(function () {
+            //	jQuery("#menu").css("right", "-245px");
+            $("#menu5").removeClass("visible");
+        });
+    });</script>

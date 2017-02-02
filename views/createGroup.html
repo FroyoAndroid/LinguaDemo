@@ -1,0 +1,33 @@
+<style>.sidebar-nav li a{
+        background: green;
+    }
+    .upload-button-new {
+        padding: 16px;
+        border: 3px solid black;
+        border-radius: 5px;
+        display: block;
+        font-size: 22px;
+    }</style> <ion-view view-title="CreateGroup"> <ion-content> <div class="container padding-left-right"> <div class="header_bg"> <div class="headericon-bg"> <ul> <li><a href="#" ui-sref="chat"><img class="img-responsive" src="images/sms.png" alt=""></a></li> <li><a href="#" ui-sref="createGroup"><img class="img-responsive" src="images/user.png" alt=""></a></li> <li><a href="#" ui-sref="createlinedrop"><img class="img-responsive" src="images/exam-paper.png" alt=""></a></li> <li><a href="#" ui-sref="addContact"><img class="img-responsive" src="images/user1.png" alt=""></a></li> </ul> </div> <div class="user-acc" ui-sref="accounts"> <img class="dotimg" src="{{linguaCtrl.userDetails.image||'images/profile-user.jpg'}}" alt=""> </div> <!--                <div id="menu13" class="nav sidebar">
+                    <div class="list-group">
+                        <ul class="sidebar-nav">
+                            <li class="sidebar-brand"><span class="cross"><i class="fa fa-angle-right fa-2x"></i></span>
+                                <label><a>{{linguaCtrl.user.name}}</a></label> </li>
+                            <li><a ui-sref="accounts"><i class="fa fa-wrench"></i>Accounts</a> </li>
+                            <li> <a ui-sref="group"><i class="fa fa-group"></i>Group</a> </li>
+                            <li> <a ui-sref="contactList"><i class="fa fa-phone"></i>Contacts</a> </li>
+                            <li> <a ui-sref="linedrop"><i class="fa fa-globe"></i>World</a> </li>
+                            <li> <a ui-sref="chatList"><i class="fa fa-commenting-o"></i>Chat</a> </li>
+                            <li> <a ng-click="linguaCtrl.logout()"><i class="fa fa-sign-out"></i>Log out</a> </li>
+                        </ul>
+                    </div>
+                </div>--> </div> <div class="groupcontent text-center" style="margin-left: 5px;margin-right: 5px;margin-top:68px"> <form ng-submit="linguaCtrl.addGroup();"> <div class="form-group" style="margin-top: 5px"> <input type="text" class="form-control" placeholder="Enter group Name" name="groupName" ng-model="linguaCtrl.group.name"> </div> <button type="submit" class="button button-block button-balanced">Add Group</button> </form> </div> <center><p class="click-user">Want to see group list <a href="#" ui-sref="group" style="color: #30B4D6">click here</a></p></center> </div> </ion-content> </ion-view> <script type="text/javascript">jQuery(document).ready(function () {
+        jQuery("#menu13").css("right", "-260px");
+        jQuery('.user-acc .dotimg').click(function () {
+            jQuery("#menu13").css("right", "0");
+            jQuery("#menu13").addClass("visible");
+        });
+        jQuery('#menu13 .cross').click(function () {
+            //	jQuery("#menu").css("right", "-245px");
+            jQuery("#menu13").removeClass("visible");
+        });
+    });</script>

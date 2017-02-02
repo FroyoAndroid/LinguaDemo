@@ -1,0 +1,47 @@
+<style>.sidebar-nav li a{
+        background: green;
+    }</style> <ion-view view-title="SingelChat"> <ion-content> <div class="container padding-left-right"> <div class="header_bg"> <div class="headericon-bg"> <div class="logo-white"> <a href=""><img class="img-responsive" src="images/logo3.png" alt=""></a> </div> <div class="lingua-search"> <a id="searchshow9"><img class="img-responsive" src="images/search.png" alt=""></a> </div> <div class="smsiconbg" id="addchat"> <a ui-sref="chat"><img class="img-responsive" src="images/sms.png" alt=""></a> </div> </div> <div class="user-acc" ui-sref="accounts"> <img class="dotimg" src="{{linguaCtrl.userDetails.image||'images/profile-user.jpg'}}" alt=""> </div> <!--                <div id="menu6" class="nav sidebar">
+                    <div class="list-group">
+                        <ul class="sidebar-nav">
+                            <li class="sidebar-brand"><span class="cross"><i class="fa fa-angle-right fa-2x"></i></span>
+                                <label><a>{{linguaCtrl.user.name}}</a></label> </li>
+                            <li><a ui-sref="accounts"><i class="fa fa-wrench"></i>Accounts</a> </li>
+                            <li> <a ui-sref="group"><i class="fa fa-group"></i>Group</a> </li>
+                            <li> <a ui-sref="contactList"><i class="fa fa-phone"></i>Contacts</a> </li>
+                            <li> <a ui-sref="linedrop"><i class="fa fa-globe"></i>World</a> </li>
+                            <li> <a ui-sref="chatList"><i class="fa fa-commenting-o"></i>Chat</a> </li>
+                            <li> <a ng-click="linguaCtrl.logout()"><i class="fa fa-sign-out"></i>Log out</a> </li>
+                        </ul>
+                    </div>
+                </div>--> </div> <div class="clearfix"></div> <div class="search-panel-section4"> <input type="search" class="search" id="searchText9"> <input type="hidden" id="username" value="{{linguaCtrl.user.name}}"> <div class="search-panel-list"> </div> </div> <div class="lingua-menu"> <ul> <li class="active"><a ui-sref="chatList"><b>Chat</b></a></li> <li><a ui-sref="group">Group</a></li> <li><a ui-sref="linedrop">World</a></li> <li><a ui-sref="contactList">Contacts</a></li> </ul> </div> <div class="rgay-bg"> <div class="whtbg linedrop" ng-repeat="chatList in linguaCtrl.chatList"> <div class="whitecontainer secnd" ng-show="chatList.fromUserID == linguaCtrl.user.name"> <div class="inner-box"> <div class="contentlinedrop-section"> <p>{{chatList.message}}</p> </div> <div class="chat-right-bg"> <span class="chatspan1" style="float: left" ng-show="chatList.seen === '1'"><level style="float: left;margin-right: 12px;color: #CCC">{{chatList.addedOn}}</level><img src="images/dowble-tickb.png" alt="" class="img-responsive"></span> <span class="chatspan1" style="float: left" ng-show="chatList.seen === '0'"><level style="float: left;margin-right: 12px;color: #CCC">{{chatList.addedOn}}</level><img src="images/tick.png" alt="" class="img-responsive"></span> </div> </div> <div class="comment-img"> <img src="{{chatList.image||'images/profile-user.jpg'}}" alt="" class="img-responsive"> <p>{{chatList.fromUserID}}</p> </div> </div> <div class="whitecontainer secnd" ng-hide="chatList.fromUserID == linguaCtrl.user.name"> <div class="comment-img"> <img src="{{chatList.image||'images/profile-user.jpg'}}" alt="" class="img-responsive"> <p>{{chatList.fromUserID}}</p> </div> <div class="inner-box greenbg"> <div class="contentlinedrop-section"> <p>{{chatList.message}}</p> </div> <div class="chat-right-bg pull-right"> <span class="chatspan1" style="float: left"><level style="float: left;margin-right: 12px;color: #CCC">{{chatList.addedOn}}</level><img src="images/dowble-tickb.png" alt="" class="img-responsive"></span> </div> </div> </div> </div> <form class="register-form" ng-submit="linguaCtrl.addChatFromChat()" style="margin-left: 5px;margin-right: 5px"> <div class="form-group"> <textarea class="form-control" rows="5" id="comment" ng-model="linguaCtrl.addChatFromChat.msg" placeholder="Enter your message"></textarea> </div> <button type="submit" class="button button-block button-balanced send">Send</button> </form> </div> </div> </ion-content> </ion-view> <script type="text/javascript">$(document).ready(function () {
+         $('#searchText9').keyup(function () {
+            if ($(this).val() !== "") {
+                console.log($(this).val() + "====" + $("#username").val());
+                $.ajax({url: "http://greenreeflive.com/lingua_chat/web_service/search.php?key=jhachb688925c58912e72f34775a6d598f1bfdck&type=contact&keyword=" + $(this).val() + "&username=" + $("#username").val(),
+                    success: function (result) {
+                        var strVar = "";
+                        strVar += "<ul>";
+                        for (var i = 0; i < result.data.length; i++) {
+                            strVar += "<li><a href=\"#/singleChat/"+result.data[i].username+"/0\">" + result.data[i].username + "</a><\/li>";
+                        }
+                        strVar += "  <\/ul>";
+                        $(".search-panel-list").html(strVar);
+                    }});
+            }else{
+                $(".search-panel-list").html("");
+            }
+        });
+        $('#searchshow9').click(function () {
+            console.log('+++++++');
+            $('.search-panel-section4').slideToggle("fast");
+        });
+        $("#menu6").css("right", "-260px");
+        $('.user-acc .dotimg').click(function () {
+            $("#menu6").css("right", "0");
+            $("#menu6").addClass("visible");
+        });
+        $('#menu6 .cross').click(function () {
+            //	jQuery("#menu").css("right", "-245px");
+            $("#menu6").removeClass("visible");
+        });
+    });</script>

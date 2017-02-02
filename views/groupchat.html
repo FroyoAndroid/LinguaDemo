@@ -1,0 +1,40 @@
+<style>.sidebar-nav li a{
+        background: green;
+    }</style> <ion-view view-title="groupchat"> <ion-content> <div class="container padding-left-right"> <div class="header_bg"> <div class="headericon-bg"> <div class="logo-white"> <a href="#"><img class="img-responsive" src="images/logo3.png" alt=""></a> </div> <div class="lingua-search"> <a id="searchshow10"><img class="img-responsive" src="images/search.png" alt=""></a> </div> <div class="smsiconbg"> <a ui-sref="createGroup"><img class="img-responsive" src="images/sms.png" alt=""></a> </div> </div> <div class="user-acc" ui-sref="accounts"> <img class="dotimg" src="{{linguaCtrl.userDetails.image||'images/profile-user.jpg'}}" alt=""> </div> <!--                <div id="menu7" class="nav sidebar">
+                    <div class="list-group">
+                        <ul class="sidebar-nav">
+                            <li class="sidebar-brand"><span class="cross"><i class="fa fa-angle-right fa-2x"></i></span>
+                                <label><a>{{linguaCtrl.user.name}}</a></label> </li>
+                            <li><a ui-sref="accounts"><i class="fa fa-wrench"></i>Accounts</a> </li>
+                            <li> <a ui-sref="group"><i class="fa fa-group"></i>Group</a> </li>
+                            <li> <a ui-sref="contactList"><i class="fa fa-phone"></i>Contacts</a> </li>
+                            <li> <a ui-sref="linedrop"><i class="fa fa-globe"></i>World</a> </li>
+                            <li> <a ui-sref="chatList"><i class="fa fa-commenting-o"></i>Chat</a> </li>
+                            <li> <a ng-click="linguaCtrl.logout()"><i class="fa fa-sign-out"></i>Log out</a> </li>
+                        </ul>
+                    </div>
+                </div>--> </div> <div class="clearfix"></div> <div class="search-panel-section6"> <input type="text" class="search" id="searchText"> </div> <div class="lingua-menu"> <ul> <li><a ui-sref="chatList">Chat</a></li> <li class="active"><a ui-sref="group"><b>Group</b></a></li> <li><a ui-sref="linedrop">Line Drop</a></li> <li><a ui-sref="contactList">Contacts</a></li> </ul> </div> <div class="rgay-bg"> <!--                <form class="register-form" ng-submit="linguaCtrl.addPeople()" style="margin-left: 5px;margin-right: 5px;">
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" ng-model='linguaCtrl.addpeople.name'>
+                                    </div>
+                                    <button type="submit" class="button button-block button-balanced" >Add People</button>
+                                </form>--> <div class="whtbg linedrop" ng-repeat="chatList in linguaCtrl.groupchatList"> <div class="whitecontainer secnd" ng-show="chatList.fromUserID == linguaCtrl.user.name"> <div class="inner-box"> <div class="contentlinedrop-section"> <p>{{chatList.message}}</p> </div> <div class="chat-right-bg"> <span class="chatspan1" style="float: left"><level style="float: left;margin-right: 12px;color: #CCC">{{chatList.addedOn}}</level></span> </div> </div> <div class="comment-img" style="margin-top: 20px"> <!--                            <img src="{{chatList.image||'images/profile-user.jpg'}}" alt="" class="img-responsive">--> <p>{{chatList.fromUserID}}</p> </div> </div> <div class="whitecontainer secnd" ng-hide="chatList.fromUserID == linguaCtrl.user.name"> <div class="comment-img" style="margin-top: 20px"> <!--<img src="images/profile-user.jpg" alt="" class="img-responsive">--> <p>{{chatList.fromUserID}}</p> </div> <div class="inner-box greenbg"> <div class="contentlinedrop-section"> <p>{{chatList.message}}</p> </div> <div class="chat-right-bg pull-right"> <span class="chatspan1" style="float: left"><level style="float: left;margin-right: 12px;color: #CCC">{{chatList.addedOn}}</level></span> </div> </div> </div> </div> <form class="register-form" ng-submit="linguaCtrl.addGroupChat()" style="margin-left: 5px;margin-right: 5px"> <div class="form-group"> <textarea class="form-control" rows="5" id="comment" ng-model="linguaCtrl.addGroupChat.msg" placeholder="Enter your message"></textarea> </div> <button type="submit" class="button button-block button-balanced send">Send</button> </form> </div> </div> </ion-content> </ion-view> <script type="text/javascript">$(document).ready(function () {
+        $('#searchshow10').click(function () {
+            console.log('+++++++');
+            $('.search-panel-section6').slideToggle("fast");
+        });
+        $('#searchText').click(function (){
+            console.log("===");
+        });
+        $('.send').click(function (){
+           $('#comment').val(""); 
+        });
+        $("#menu7").css("right", "-260px");
+        $('.user-acc .dotimg').click(function () {
+            $("#menu7").css("right", "0");
+            $("#menu7").addClass("visible");
+        });
+        $('#menu7 .cross').click(function () {
+            $("#menu7").removeClass("visible");
+        });
+    });</script>

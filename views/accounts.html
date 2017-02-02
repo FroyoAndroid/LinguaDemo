@@ -1,0 +1,62 @@
+<style>.sidebar-nav li a{
+        background: green;
+    }
+    .upload-button {
+        padding: 2px;
+        border: 1px solid black;
+        border-radius: 5px;
+        display: block;
+        float: left;
+    }
+    .menuprofile.aboutlingua li label.label-area{font-size: 16px; width: 40%; float: left; color: #04afd9; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;}
+    .input-area{width: 60%; float: left; margin-top: 5px;}  
+    .dateshow{display: none}
+.header-omg-area{width: 100%; float: left;}
+.upload-button {
+    padding: 9px;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: block;
+    float: right;
+    width: 110px;
+    background: #fff;
+    margin-top: 18px;
+}
+.profle-adam .leftdiv {
+    float: left;
+    width: 20%;
+    margin-right: 2%;
+}</style> <ion-view view-title="GroupList"> <ion-content> <div class="container padding-left-right"> <div class="header_bg"> <div class="headericon-bg"> <ul> <li><a href="#" ui-sref="chat"><img class="img-responsive" src="images/sms.png" alt=""></a></li> <li><a href="#" ui-sref="createGroup"><img class="img-responsive" src="images/user.png" alt=""></a></li> <li><a href="#" ui-sref="createlinedrop"><img class="img-responsive" src="images/exam-paper.png" alt=""></a></li> <li><a href="#" ui-sref="addContact"><img class="img-responsive" src="images/user1.png" alt=""></a></li> </ul> </div> <div class="user-acc" ng-click="linguaCtrl.logout()"> <img class="dotimg img-responsive" src="images/logout1.png" alt=""> </div> <!--                <div id="menu1" class="nav sidebar">
+                    <div class="list-group">
+                        <ul class="sidebar-nav">
+                            <li class="sidebar-brand"><span class="cross"><i class="fa fa-angle-right fa-2x"></i></span>
+                                <label><a>{{linguaCtrl.user.name}}</a></label> </li>
+                            <li><a ui-sref="accounts"><i class="fa fa-wrench"></i>Accounts</a> </li>
+                            <li> <a ui-sref="group"><i class="fa fa-group"></i>Group</a> </li>
+                            <li> <a ui-sref="contactList"><i class="fa fa-phone"></i>Contacts</a> </li>
+                            <li> <a ui-sref="linedrop"><i class="fa fa-globe"></i>World</a> </li>
+                            <li> <a ui-sref="chatList"><i class="fa fa-commenting-o"></i>Chat</a> </li>
+                            <li> <a ng-click="linguaCtrl.logout()"><i class="fa fa-sign-out"></i>Log out</a> </li>
+                        </ul>
+                    </div>
+                </div>--> </div> <div class="rgay-bg"> <div class="profle-adam"> <div class="header-omg-area"> <div class="leftdiv"> <img src="{{linguaCtrl.userDetails.image||'images/profile-user.jpg'}}" alt="" class="profile-pic"> <input class="file-upload" style="display: none" type="file" accept="image/*"> </div> <div class="upload-button">Upload Image</div> </div> <div class="rightdiv"> <div class="follow-detl"> <h1 class="pro-title">{{linguaCtrl.user.name}}</h1> <label class="address" ng-show="linguaCtrl.userDetails.city"><i class="fa fa-map-marker" aria-hidden="true"></i>{{linguaCtrl.userDetails.city}} </label> <div class="probox-main-container"> </div> </div> </div> <form ng-submit="linguaCtrl.updateUserDetails()"> <div class="menuprofile aboutlingua"> <ul> <li><span> <label for="usr" class="label-area"> <i class="fa fa-user"></i> Name:</label> <input type="text" class="form-control input-area" id="Name" name="name" ng-model="linguaCtrl.userDetails.name"> </span></li> <li><span> <label for="usr" class="label-area"> <i class="fa fa-map-marker"></i> City Name: </label> <input type="text" class="form-control input-area" id="City" name="city" ng-model="linguaCtrl.userDetails.city"> </span></li> <li><span ng-hide="linguaCtrl.userDetails.dob"> <label for="usr" class="label-area"> <i class="fa fa-calendar"></i> Date Of Birth:</label> <input class="item colorForInput input-area" type="text" id="datepicker1" name="dob" ion-datetime-picker date ng-model="linguaCtrl.userDetails.dob"> <label class="dateshow" style="float: right;width: 60%;position: absolute;left: 41%;z-index: 99;font-size: 14px"> {{linguaCtrl.userDetails.dob| date: "yyyy-MM-dd"}}</label> </span> <span ng-show="linguaCtrl.userDetails.dob"> <label for="usr" class="label-area"> <i class="fa fa-calendar"></i> Date Of Birth:</label> <input type="text" class="form-control input-area" id="Birth" name="dob" ng-model="linguaCtrl.userDetails.dob" ng-disabled="linguaCtrl.userDetails.dob"> </span> </li> <!--                                <li><span>
+                                        <label for="usr" class="label-area">
+                                            <i class="fa fa-phone" aria-hidden="true"></i>
+                                            Phone:</label>
+                                        <input type="text" class="form-control input-area" id="Phone" name="phone" ng-model="linguaCtrl.userDetails.mobile">
+
+                                    </span></li>--> <li><span> <label for="usr" class="label-area"> <i class="fa fa-globe"></i> Web site:</label> <input type="text" class="form-control input-area" id="site" name="site" ng-model="linguaCtrl.userDetails.website"> </span></li> <li><span> <label for="usr" class="label-area"> <i class="fa fa-envelope"></i> Mail:</label> <input type="text" class="form-control input-area" id="Mail" name="mail" ng-model="linguaCtrl.userDetails.email"> </span></li> <li><span> <label for="usr" class="label-area"> About me </label> <input type="text" class="form-control input-area" id="About" name="About" ng-model="linguaCtrl.userDetails.aboutMe"> </span> </li> <div class="col col-center m-l-sm m-r-sm"> <input type="hidden" id="username" value="{{linguaCtrl.user.name}}"> <button class="button button-block button-balanced center" type="submit" id="sub">Submit </button> </div> </ul> </div> </form> </div> </div> </div> </ion-content> </ion-view> <script type="text/javascript">$(document).ready(function () {
+        $('#datepicker1').click(function () {
+            $('.dateshow').show("fast");
+
+        });
+        $("#menu1").css("right", "-260px");
+        $('.user-acc .dotimg').click(function () {
+            $("#menu1").css("right", "0");
+            $("#menu1").addClass("visible");
+        });
+        $('#menu1 .cross').click(function () {
+            //	jQuery("#menu").css("right", "-245px");
+            $("#menu1").removeClass("visible");
+        });
+    });</script>
